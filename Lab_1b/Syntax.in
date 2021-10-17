@@ -16,7 +16,7 @@ stmtlist = stmt {stmt}
 
 stmt = simplStmt | cmpStmt | ifStmt | whileStmt
 
-simplStmt = assignStmt | ioStmt ";"
+simplStmt = (assignStmt | ioStmt) ";"
 
 assignStmt = identifier "=" expr
 
@@ -24,7 +24,7 @@ expr = identifier {operator identifier}
 
 operator = "+" | "-" | "/" | "*"
 
-ioStmt = "read" | "write" "(" identifier ")" ";"
+ioStmt = "read" | "write" "(" identifier ")"
 
 cmpStmt = "{" stmtlist "}"
 
