@@ -32,7 +32,4 @@ if
 else 
 while 
 read 
-write 
-constInt 
-constChar 
-constString
+write

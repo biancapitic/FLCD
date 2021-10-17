@@ -6,7 +6,7 @@ c.	Decimal digits (0-9)
 Special symbols:
 -	Operators: + - * / : = < > <= >= != % ! and or
 -	Separators: () [] {} : ; , . space newline
--	Reserved words: int char string bool array if else while read write constInt constChar constString
+-	Reserved words: int char string bool array if else while read write
 
 Identifiers:
 A sequence of letters and digits, such that the first character is a letter.
@@ -27,8 +27,9 @@ digit = “0” | nzd
 
 2.	character rule:
 constChar = ‘a’ | ‘b’ | … | ‘z’ | ‘A’ | ‘B’ | … | ‘Z’ | ‘.’ | ‘+’ | ‘-‘ | ‘*’ | ‘/’ | ‘:’ | ‘=’ | ‘<’ | ‘>’ | ‘!’ | ‘;’ | ‘?’ | ‘,’
+
 3.	string rule:
-constString = “”””{char}{string}””””
+string = “{letter | digit}”
 
 4.	Boolean rule:
 constBool = “1” | “0”

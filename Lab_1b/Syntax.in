@@ -1,4 +1,4 @@
-nr = nzd{digit}
+nr = "0" | nzd{digit}
 nzd = "1" | "2" | ... | "9"
 digit = "0" | nzd
 
@@ -20,13 +20,13 @@ simplStmt = assignStmt | ioStmt
 
 assignStmt = identifier "=" expr ";"
 
-expr = term {operation term}
+expr = term {operator term}
 
 term = identifier | const
 
 const = constInt | constChar | constString
 
-operation = "+" | "-" | "/" | "*"
+operator = "+" | "-" | "/" | "*"
 
 ioStmt = "read" | "write" "(" identifier ")" ";"
 
@@ -36,6 +36,8 @@ ifStmt = "if" "(" cond ")" "{" stmt "}" ["else" "{" stmt "}"]
 
 whileStmt = "while" "(" cond ")" "{" stmt "}"
 
-cond = expr relation expr {relation expr}
+logicalOperator = "and" | "or"
 
-relation = "<" | "<=" | ">" | ">=" | "!=" | "=" | "and" | "or"
+cond = expr relation expr {logicalOperator cond}
+
+relation = "<" | "<=" | ">" | ">=" | "!=" | "=="
