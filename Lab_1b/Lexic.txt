@@ -4,7 +4,7 @@ b.	Underline character ‘_’
 c.	Decimal digits (0-9)
 
 Special symbols:
--	Operators: + - * / : = < > <= >= != and or
+-	Operators: + - * / : = < > <= >= != % ! and or
 -	Separators: () [] {} : ; , . space newline
 -	Reserved words: int char string bool array if else while read write constInt constChar constString
 
