@@ -12,19 +12,15 @@ primitive = "int" | "char" | "bool" | "string"
 
 arraydeclr = "array" "[" nr "]" primitive
 
-stmtlist = stmt ";" {stmt ";"}
+stmtlist = stmt {stmt}
 
 stmt = simplStmt | cmpStmt | ifStmt | whileStmt
 
-simplStmt = assignStmt | ioStmt
+simplStmt = assignStmt | ioStmt ";"
 
-assignStmt = identifier "=" expr ";"
+assignStmt = identifier "=" expr
 
-expr = term {operator term}
-
-term = identifier | const
-
-const = constInt | constChar | constString
+expr = identifier {operator identifier}
 
 operator = "+" | "-" | "/" | "*"
 
