@@ -1,0 +1,34 @@
+Alphabet:
+a.	Upper (A-Z) and lower case letters (a-z) of the English alphabet
+b.	Underline character ‘_’
+c.	Decimal digits (0-9)
+
+Special symbols:
+-	Operators: + - * / : = < > <= >= != and or
+-	Separators: () [] {} : ; , . space newline
+-	Reserved words: int char string bool array if else while read write constInt constChar constString
+
+Identifiers:
+A sequence of letters and digits, such that the first character is a letter.
+An identifier has a maximum length of 256 characters.
+
+The rule is:
+identifier = letter {(underline| letter | digit)}
+letter = “a” | “b” | … | “z” | “A” | “B” | … | “Z”
+digit = “0” | “1” | … | “9”
+underline = “_”
+
+Constants:
+
+1.	integer rule:
+constInt = “0” | [”-”]nzd{digit}
+nzd = “1” | … | “9”
+digit = “0” | nzd
+
+2.	character rule:
+constChar = ‘a’ | ‘b’ | … | ‘z’ | ‘A’ | ‘B’ | … | ‘Z’ | ‘.’ | ‘+’ | ‘-‘ | ‘*’ | ‘/’ | ‘:’ | ‘=’ | ‘<’ | ‘>’ | ‘!’ | ‘;’ | ‘?’ | ‘,’
+3.	string rule:
+constString = “”””{char}{string}””””
+
+4.	Boolean rule:
+constBool = “1” | “0”
