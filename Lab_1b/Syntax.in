@@ -1,0 +1,39 @@
+nr = "0" | nzd{digit}
+nzd = "1" | "2" | ... | "9"
+digit = "0" | nzd
+
+program = "{" {declaration} stmtlist "}"
+
+declaration = identifier ":" type ";"
+
+type = primitive | arraydeclr
+
+primitive = "int" | "char" | "bool" | "string" 
+
+arraydeclr = "array" "[" nr "]" primitive
+
+stmtlist = stmt {stmt}
+
+stmt = simplStmt | cmpStmt | ifStmt | whileStmt
+
+simplStmt = (assignStmt | ioStmt) ";"
+
+assignStmt = identifier "=" expr
+
+expr = identifier {operator identifier}
+
+operator = "+" | "-" | "/" | "*"
+
+ioStmt = "read" | "write" "(" identifier ")"
+
+cmpStmt = "{" stmtlist "}"
+
+ifStmt = "if" "(" cond ")" "{" stmt "}" ["else" "{" stmt "}"]
+
+whileStmt = "while" "(" cond ")" "{" stmt "}"
+
+logicalOperator = "and" | "or"
+
+cond = expr relation expr {logicalOperator cond}
+
+relation = "<" | "<=" | ">" | ">=" | "!=" | "=="
