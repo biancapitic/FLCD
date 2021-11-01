@@ -1,0 +1,38 @@
+{
+a: int;
+isPrime: int = 1;
+
+read (a);
+
+if (a <= 1) 
+	{
+		write ("Not-Prime");
+	}
+
+if (a != 2 and a % 2 == 0)
+	{
+		write ("Prime");
+	}
+else
+{
+	nr: int = 3;
+		while (nr < a)
+		{
+			if (a % nr == 0)
+			{
+				isPrime = 0;
+				nr = a;
+			}
+			nr = nr + 2;
+			d=e
+		}
+}
+if (isPrime ==1)
+	{
+		write("Prime");
+	}
+else
+	{
+		write ("Not-Prime");
+	}
+}
