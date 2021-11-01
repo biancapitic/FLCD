@@ -34,17 +34,3 @@ class SymbolTable:
 
     def __str__(self):
         return str(self.elements)
-
-
-def main():
-    st = SymbolTable()
-
-    id1 = st.add("green")
-    id2 = st.add("apple")
-    id3 = st.add("pie")
-
-    assert id1 == st.add("green")
-    assert id2 == st.add("apple")
-    assert id3 == st.add("pie")
-
-main();
