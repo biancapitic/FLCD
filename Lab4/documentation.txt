@@ -1,0 +1,26 @@
+https://github.com/biancapitic/FLCD
+
+Finite automata:
+- all states as a list of characters
+- alphabet as a list of characters
+- initial state as a single character
+- final states as a list of characters
+- transitions as a dictionary(key = (state, symbol) , value = next state)
+
+def isSequenceAccepted(self, sequence):
+The method first checks if the given sequence uses symbols from the accepted alphabet.
+If the sequence contains valid symbols then:
+- starting from the initial state it checks i the pair formed from the current state and the current symbol from the sequence are a key in the transitions dictionary
+    - if the pair is not a key the method returns False because considering a DFA it means that the sequence is not accepted
+    - otherwise, the current state will be the state resulting after applying the current transition
+- at the end, if the current state is a final state then the sequence is accepted
+
+fa = states alphabet q0 finalStates transitions
+states = letter {,letter}
+alphabet = letter | digit {, letter | digit}
+letter = “a” | “b” | … | “z” | “A” | “B” | … | “Z”
+digit = “0” | “1” | … | “9”
+q0 = letter
+finalStates = letter | digit {, letter | digit}
+transitions = transition {, transition}
+transition = letter, letter"-"letter | digit {, letter | digit}

@@ -1,0 +1,17 @@
+{
+	n: int;
+	read (n);
+
+	array: int [n];
+	nrSum: int = 0;
+	index: int = 0;
+
+	while (index < n)
+	{
+		read (array[index]);
+		nrSum = nrSum + array [index];
+		index = index + 1;
+}
+
+write ("Sum:" + nrSum);
+}
