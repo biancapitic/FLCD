@@ -1,0 +1,62 @@
+Lab3 documentation
+
+https://github.com/biancapitic/FLCD
+
+The Scanner class has the following methods:
+
+def __init__(self, fileName):
+The method initializes the attributes of the scanner:
+- fileName - the name of the file to be scanned
+- identifierST - the Symbol Table for identifiers
+- constantsST - the Symbol Table for constants
+- nbrOfOperators - how many operators will be read from token.in file
+- nbrOfSeparators - how many separators will be read from token.in file
+- nbrOfReservedWords - how many reserved words will be read from token.in file
+The operators, separators, reservedWords are initialized and then read from token.in file.
+
+def __setAttributes(self):
+The method reads from token.in the operators, separators and reserved words of the language.
+
+def __getOperatorToken(self, line, index):
+The method checks for the existence of a composed operator and then it returns the corresponding operator.
+
+def __getSeparatorToken(self, line, index):
+If the separator is not space then the method returns the separator and its position.
+Otherwise it will increase the position until the current element is no longer a space and it will return an empty
+string and the position value - 1.
+
+def __getStringToken(self, line, index):
+The method returns a string token.
+
+def __tokenize(self, line):
+The method parses a line read from the file and it returns the list of tokens from that line.
+
+def __isConstant(self, token):
+The method checks if the token is a constant ( if the token is a numeric value or if the token starts
+and ends with " and is composed by the characters from the defined regex).
+
+def __isIdentifier(self, token):
+The method checks if the given token is an identifier. An identifier is a string that starts with a letter 
+and it's composed and it ends with letters or underline.
+
+def __analyze(self, tokens, lineNr):
+This method analises the list of tokens of the lineNr line from the given input file.
+It has the following flow:
+- if the token is an operator, a separator or a reserved word it adds to the PIF the following pair: (token, (-1,-1));
+- if the token is an identifier it will add it (only if it doesn't exist already) in the symbol table for identifiers and it will get the position of the identifier in
+the symbol table, then it adds in the PIF the following pair ('identifier', position of the identifier in the symbol table);
+- if the token is a constant it will add it (only if it doesn't exist already) in the symbol table for constants and it will get the position of the constant in
+the symbol table, then it adds in the PIF the following pair ('constant', position of the constant in the symbol table);
+- if none of the previous conditions were satisfied then it means that there is a lexical error and it's added to the error variable;
+
+def getPrintablePIF(self, pif):
+This method returns a nicer version of the PIF.
+
+def scan(self):
+This method is the implementation of the scanning algorithm. 
+It parses the input file line by line. 
+It analyses the tokens from each line and it returns the PIF, the symbol table of constants, the symbol table of identifiers and the string containing all the lexical errors (if there is any).
+
+
+
+

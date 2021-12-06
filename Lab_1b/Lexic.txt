@@ -4,7 +4,7 @@ b.	Underline character ‘_’
 c.	Decimal digits (0-9)
 
 Special symbols:
--	Operators: + - * / : = < > <= >= != % ! and or
+-	Operators: + - * / : = == < > <= >= != % ! and or
 -	Separators: () [] {} : ; , . space newline
 -	Reserved words: int char string bool array if else while read write
 
@@ -25,11 +25,8 @@ constInt = “0” | [”-”]nzd{digit}
 nzd = “1” | … | “9”
 digit = “0” | nzd
 
-2.	character rule:
-constChar = ‘a’ | ‘b’ | … | ‘z’ | ‘A’ | ‘B’ | … | ‘Z’ | ‘.’ | ‘+’ | ‘-‘ | ‘*’ | ‘/’ | ‘:’ | ‘=’ | ‘<’ | ‘>’ | ‘!’ | ‘;’ | ‘?’ | ‘,’
+2.	string rule:
+constString = "“"{letter | digit | "." | "+" | "-" | "*" | "/" | ":" | "=" | "<" | ">" | "!" | ";" | "?" | "," | ":"}"”"
 
-3.	string rule:
-string = “{letter | digit}”
-
-4.	Boolean rule:
+3.	Boolean rule:
 constBool = “1” | “0”
