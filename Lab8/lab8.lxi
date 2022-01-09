@@ -1,0 +1,95 @@
+%option noyywrap
+%{
+#include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct {
+    int pos;
+    char token[40];
+} elem;
+
+int symbol_table_len = 0;
+int pif_len = 0;
+
+elem symbol_table[40];
+elem pif[200];
+
+void addToPIF(char *token){
+    strcpy(pif[pif_len].token, token);
+    pif[pif_len].pos = -1;
+    pif_len = pif_len + 1;
+}
+
+void addToPIFWithPos(char *token, int pos){
+    strcpy(pif[pif_len].token, token);
+    pif[pif_len].pos = pos;
+    pif_len = pif_len + 1;
+}
+
+void addToSymbolTable(char *token) {
+    int i = 0;
+    int pos = -1;
+    while (i < symbol_table_len && pos == -1) {
+        if (strcmp(symbol_table[i].token, token) == 0) {
+            pos = i;
+        }
+        i = i + 1;
+    }
+
+    // the constant or identifier is not in the symbol table yet so we add it
+    if (pos == -1) {
+        pos = symbol_table_len;
+        addToPIFWithPos(token, pos);
+        strcpy(symbol_table[symbol_table_len].token,token);
+        symbol_table[symbol_table_len].pos = pos;
+        symbol_table_len += 1;
+    }
+    addToPIFWithPos(token, pos);
+}
+
+void print_PIF_and_ST(){
+    int i;
+    printf("This is the PIF: \n");
+    for (i = 0; i < pif_len; i++){
+        printf("Token %s, position: %d\n", pif[i].token, pif[i].pos);
+    }
+
+    printf("-----------------------------\n");
+
+    printf("This is the Symbol Table: \n");
+    for (i = 0; i < symbol_table_len; i++){
+        printf("Token %s, position: %d\n", symbol_table[i].token, symbol_table[i].pos);
+    }
+}
+%}
+DIGIT [0-9]
+NZD [1-9]
+LETTER [a-zA-Z]
+IDENTIFIER [a-zA-Z][a-zA-Z0-9_]*
+UNDERLINE _
+%%
+"({LETTER}|{DIGIT} )+" {addToSymbolTable(yytext);}
+1|0 {addToSymbolTable(yytext);}
+(\+?|-){NZD}{DIGIT}*|0 {addToSymbolTable(yytext);}
+,|:|;|\s|\[|\]|\{|\}|\(|\)|\. {addToPIF(yytext);}
+[+\-*/%=] {addToPIF(yytext);}
+int|char|string|bool|array|if|else|while|read|write {addToPIF(yytext);}
+(<=)|(>=)|(==)|!=|<|>|and|or|! {addToPIF(yytext);}
+{IDENTIFIER} {addToSymbolTable(yytext);}
+[\s\t\n ]+
+. {printf("Unrecognised character: %s\n", yytext);}
+%%
+int main( argc, argv )
+int argc; 
+char **argv;
+{ 
+    ++argv, --argc; /* skip over program name */ 
+    if ( argc > 0 ) 
+    yyin = fopen( argv[0], "r" ); 
+    else 
+     yyin = stdin; 
+    yylex();
+    print_PIF_and_ST();
+}
+
