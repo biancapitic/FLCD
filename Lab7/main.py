@@ -8,14 +8,16 @@ def get_sequence(file_name):
 
     for line in lines:
         elements = line.split("|")
+
         if elements[0] != 'Token':
             sequence.append(elements[0].strip())
 
+    print(sequence)
     return sequence
 
 
 if __name__ == "__main__":
-    file_name = 'g1.txt'
+    file_name = 'g2.txt'
     grammar = Grammar(file_name)
     parser = Parser(grammar)
     tests = Tests()
