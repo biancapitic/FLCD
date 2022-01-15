@@ -1,0 +1,60 @@
+%{
+#include "lab9.tab.h"
+%}
+%option noyywrap
+%option caseless
+
+DIGIT [0-9]
+NZD [1-9]
+LETTER [a-zA-Z]
+IDENTIFIER [a-zA-Z][a-zA-Z0-9_]*
+UNDERLINE _
+STRING ["][^\n]*["]
+BOOLEAN 1|0
+NUMBER (\+?|-){NZD}{DIGIT}*|0
+
+%%
+
+[\t\n ]+
+
+"<=" {return LE;}
+">=" {return GE;}
+"==" {return EQUAL;}
+"!=" {return NE;}
+"<" {return LESS;}
+">" {return GREATER;}
+or {return OR;}
+and {return AND;}
+
+"}" {return BR_CURLY_CLOSED;}
+"{" {return BR_CURLY_OPENED;}
+"[" {return BR_SQUARE_OPENED;}
+"]" {return BR_SQUARE_CLOSED;}
+"(" {return BR_ROUND_OPENED;}
+")" {return BR_ROUND_CLOSED;}
+";" {return DOT_COMMA;}
+":" {return DOT_DOT;}
+"." {return DOT;}
+"," {return COMMA;}
+"+" {return PLUS;}
+"-" {return MINUS;}
+"*" {return MULTIPLY;}
+"/" {return DIVIDE;}
+"%" {return MOD;}
+"=" {return ASSIGN;}
+
+if {return IF;}
+string {return STRING;}
+int {return INT;}
+bool {return BOOL;}
+array {return ARRAY;}
+else {return ELSE;}
+while {return WHILE;}
+read {return READ;}
+write {return WRITE;}
+
+{IDENTIFIER} {return ID;}
+
+{STRING} {return CONST_STRING;}
+{BOOLEAN} {return CONST_BOOLEAN;}
+{NUMBER} {return CONST_INT;}
